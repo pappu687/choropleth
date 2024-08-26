@@ -24,13 +24,11 @@ L.choropleth = module.exports = function (geojson, opts) {
       return parseFloat(item.properties[opts.valueProperty])      
     })  
   var limits = chroma.limits(values, opts.mode, opts.steps - 1)
-  console.log(limits);
 
   // Create color buckets
   var colors = (opts.colors && opts.colors.length === limits.length ?
                 opts.colors :
                 chroma.scale(opts.scale).colors(limits.length))
-    console.log(colors);
 
   return L.geoJson(geojson, _.extend(opts, {
     limits: limits,
